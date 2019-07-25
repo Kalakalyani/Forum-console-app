@@ -113,6 +113,25 @@ def change_email(user):
 	user1=User.update(email_id=new_email).where(User.username==user3)
 	user1.execute()
 	print("Email changed")
+
+def delete_account(user,password1):
+	user3=user
+	password2 = User.select().where(User.username==user3)
+	
+	if password2.get().password == password1:
+		ch=input("Deleting your account is a permanent action and your details cannot be recovered.\n Are you sure? Y/N --> ")
+		
+		if ch=="Y":
+			entry = User.select().where(User.username==user3).get()
+			entry.delete_instance()
+			print("Account deleted!")
+			return 1
+		elif ch=="N":
+			return 0
+		else:
+			return 0
+	else:
+		print("Incorrect password!")
 	
 
 def login():
