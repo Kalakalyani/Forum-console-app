@@ -10,21 +10,23 @@ while True:
 		
 
 	elif choice=="2":
-		v=True
+		
 		user = login()
-		while v==True:
+		
+		while True:		
+				
 			if user:
 				print("\n","-"*20)
 				print("Choose an action. \n 1. Posts \n 2.Settings \n 3. Logout")
 				choice1=input("-->")
+			
 				if choice1=="1":
 					print("Choose an action. \n 1. Post Question \n 2. View Question \n  ")
 					choice2=input("-->")
 					if choice2=="1":
 						content =input("Write your Question\n------------\n")
 						post_ques(user, content)
-						
-
+					
 					elif choice2=="2":
 						view_ques()
 						print("Choose an action. \n 1. Post Answer \n 2. View Answer \n  ")
@@ -41,7 +43,7 @@ while True:
 								get_ans_by_id(ans_id)
 						else:
 							continue
-						
+					
 
 					else:
 						continue
@@ -57,10 +59,12 @@ while True:
 					elif choice4=="2":
 						change_email(user)
 					
-				elif choice=="3":
-					v=False
-			else:
-				print("Incorrect credentials!")
-				break
+				elif choice1=="3":
+					exit()
+
+					
+			
+	elif choice=="3":
+		exit()
 	else:
 		exit()
