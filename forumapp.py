@@ -6,9 +6,9 @@ def user_register():
 	full_name= input("Enter full name -->")
 	username= input("Enter username -->")
 
-	u=True
+	
 
-	while u==True:
+	while True:
 		user2=User.select().where(User.username == username)
 		if user2.exists():
 			print("Username already exists!\n")
@@ -16,12 +16,11 @@ def user_register():
 		else:
 			break
 
-
 	password=input("Enter password -->")
 	email=input("Enter email --> ")
-	v=True
+	
 
-	while v==True:
+	while True:
 		email1=User.select().where(User.email_id == email)
 		if email1.exists():
 			print("Email id already exists!\n")
@@ -82,7 +81,7 @@ def view_ans(question_id):
 def get_ans_by_id(ans_id):
 	entry = Answer.select().where(Answer.id ==ans_id).get()
 	print ("-"*20)
-	print(entry.Posted_Answers)
+	print(entry.Posted_Answers, "\nLikes :",entry.likes,"\nDislikes: ",entry.dislikes)
 	print ("-"*20)
 	print("\nRate the answer:\n1. Like \n2. Dislike \n3. Can't say")
 	choice5=input("--> ")
@@ -96,43 +95,40 @@ def get_ans_by_id(ans_id):
 		return 0
 
 def change_password(user):
-	user1=User.select().where(User.username == user)
-	if user1.exists():
-		password1=input("enter current password-->")
-		if User.password==password1:
-			new_password=input("enter new password-->")
-			user1=User.update(password=new_password).where(User.username==user)
-			user1.execute()
-			print("password changed")
-		else:
-			print("incorrect password")
+	user3=user
+	password2 = User.select().where(User.username==user3)
+	password1=input("enter current password-->")
+	if password2.get().password == password1:
+		new_password=input("enter new password-->")
+		user1=User.update(password=new_password).where(User.username==user3)
+		user1.execute()
+		print("password changed")
 	else:
-		return 0
+		print("incorrect password")
+	
 
 def change_email(user):
-	user1=User.select().where(User.username == user)
-	if user1.exists():
-		new_email=input("enter new email-->")
-		user1=User.update(email_id=new_email).where(User.username==user)
-		user1.execute()
-		print("Email changed")
-	else:
-		return 0
+	user3=user
+	new_email=input("enter new email-->")
+	user1=User.update(email_id=new_email).where(User.username==user3)
+	user1.execute()
+	print("Email changed")
+	
 
 def login():
 	username = input("Enter Username -->")
-	password = input("Enter Password -->")
+	
 
 	
 	user=User.select().where(User.username == username)
 
 	if not user.exists():
-		print("incorrect credentials!\n")
+		print("Incorrect credentials!\n")
 		return 0
-
+	password = input("Enter Password -->")
 	if user.get().password == password:
 		print("Logged in successfully!\n")
-		return user.get()
+		return username
 		
 
 	else:
