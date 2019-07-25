@@ -50,7 +50,7 @@ while True:
 					
 
 				elif choice1=="2":
-					print("Choose an action. \n 1. Change password \n 2. Change email \n  ")
+					print("Choose an action. \n 1. Change password \n 2. Change email \n 3. Delete account ")
 					choice4=input("-->")
 					if choice4=="1":
 						change_password(user)
@@ -58,6 +58,13 @@ while True:
 
 					elif choice4=="2":
 						change_email(user)
+
+					elif choice4=="3":
+						password1=input("Enter your password-->")
+						del1=delete_account(user,password1)
+						if del1 == 1:
+							exit()
+
 					
 				elif choice1=="3":
 					exit()
