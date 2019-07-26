@@ -63,7 +63,7 @@ while True:
 						password1=input("Enter your password-->")
 						del1=delete_account(user,password1)
 						if del1 == 1:
-							exit()
+							break
 
 					
 				elif choice1=="3":
