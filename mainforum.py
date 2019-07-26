@@ -67,9 +67,11 @@ while True:
 
 					
 				elif choice1=="3":
-					exit()
+					break
 
-					
+			else:
+				break
+
 			
 	elif choice=="3":
 		exit()
