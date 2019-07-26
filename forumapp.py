@@ -33,17 +33,18 @@ def user_register():
 		print("Registration successful!")
 
 def post_ques(user, content):
-	entry=Question(Posted_Questions=content, user_id=user, timestamp=datetime.now())
+	user4=User.select().where(User.username==user)
+	entry=Question(Posted_Questions=content, user_id=user4.get().id, timestamp=datetime.now())
 	entry.save()
 	if entry:
 		print("question saved successfully!")
 
 def post_ans(user,content,ques_id):
 	
-	#entry1=Question.select().where(Question.Posted_Questions == content)
 	
+	user4=User.select().where(User.username==user)
 
-	entry=Answer(Posted_Answers=content, user_id=user, timestamp=datetime.now(),question_id=ques_id, likes=0, dislikes=0)
+	entry=Answer(Posted_Answers=content, user_id=user4.get().id, timestamp=datetime.now(),question_id=ques_id, likes=0, dislikes=0)
 	entry.save()
 	if entry:
 		print("answer saved successfully!")
